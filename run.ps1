@@ -7,14 +7,9 @@ For corporate devices that have access restricted
 #$winStoreKey = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsStore\RemoveWindowsStore'
 $ServiceName = 'wuauserv'
 $arrService = Get-Service -Name $ServiceName
+$storeProcess = Get-Process WinStore.app -ErrorAction SilentlyContinue
 
-if((Get-Process -id 17256 -ea SilentlyContinue) -eq $Null){  
-}
-
-else{ 
-    write-host "Closing Store application"
-    Stop-Process -id 17256
- }
+$storeProcess | Stop-Process -Force -ErrorAction SilentlyContinue
     
 
 If ((test-path "HKLM:\SOFTWARE\Policies\Microsoft\WindowsStore") -eq $False) {
