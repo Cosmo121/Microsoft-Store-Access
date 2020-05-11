@@ -16,7 +16,6 @@ else{
     Stop-Process -id 17256
  }
     
-Get-Process -Name WinStore.App | Stop-Process
 
 If ((test-path "HKLM:\SOFTWARE\Policies\Microsoft\WindowsStore") -eq $False) {
     New-Item "HKLM:\SOFTWARE\Policies\Microsoft\WindowsStore"
